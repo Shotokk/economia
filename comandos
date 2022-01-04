@@ -1,1 +1,65 @@
+Daily:
 
+$nomention
+$onlyIf[$guildID!=;]
+** $username Aqui estao seus 300$ diarios! **
+ 
+$setUserVar[money;$sum[$getUserVar[money];300]]
+$cooldown[24h;** Voce tem que esperar %time% para coletar novamente. **]
+
+Saldo:
+
+$nomention
+$onlyIf[$guildID!=;]
+$title[💵** | Dinheiro **]
+$description[Balance de $username]
+$addField[Billetera;$getUserVar[money]]
+$footer[Comando feito por Shoto!]
+$color[$random[0;999999]]
+$addTimestamp
+
+AddMoney:
+
+$nomention
+$onlyIf[$guildID!=;]
+$argsCheck[>1;❌** | Mencione um usuario**]
+$argsCheck[>2;❌** | Ponha a quantidade que voce ira adicionar **]
+$onlyForRoles[•📕 administrador•;:x:Você não tem permissão para usar este comando!] 
+ 
+$setUserVar[money;$sum[$getUserVar[money];$noMentionMessage];$mentioned[1]]
+ 
+ 
+$title[** Dinheiro Adicionado **]
+$description[O administrador/mod $username deu $noMentionMessage a $username[$mentioned[1]]]
+$footer[Comando feito por Shoto!]
+$color[$random[0;999999]]
+$addTimestamp
+$botTyping
+
+RemoveMoney:
+
+$nomention
+$onlyIf[$guildID!=;]
+$argsCheck[>1;❌** | Mencione um usuario **]
+$argsCheck[>2;❌** | Ponha a quantidade que voce ira retirar do usuario **]
+$onlyForRoles[•📙 mod•;:x:Você não tem permissão para usar este comando!]
+$onlyForRoles[•📕 administrador•;:x:Você não tem permissão para usar este comando!]
+
+$setUserVar[money;$sub[$getUserVar[money];$noMentionMessage];$mentioned[1]]
+ 
+ 
+$title[** Dinheiro Tirado**]
+$description[O administrador $username tirou $noMentionMessage de $username[$mentioned[1]]]
+$footer[Comando feito por Shoto!]
+$color[$random[0;999999]]
+$addTimestamp
+$botTyping
+
+Coletar:
+
+$nomention
+$onlyIf[$guildID!=;]
+** $username Aqui estao seus 15$ da coleta! **
+ 
+$setUserVar[money;$sum[$getUserVar[money];15]]
+$cooldown[25m;** Voce tem que esperar %time% para coletar novamente. **]
